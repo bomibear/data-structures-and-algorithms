@@ -140,7 +140,19 @@ Return the resulting output array.
 ------------------------------------------------------------------------------------------------ */
 
 const fizzbuzz = (arr) => {
-  
+  let outputArr = [];
+  arr.forEach(function(num) {
+    if(num % 3 === 0 && num % 5 === 0) {
+      outputArr.push('Fizz Buzz');
+    } else if (num % 5 === 0) {
+      outputArr.push('Buzz');
+    } else if (num % 3 === 0){
+      outputArr.push('Fizz');
+    } else {
+      outputArr.push(num);
+    }
+  });
+  return outputArr;
 };
 
 /* ------------------------------------------------------------------------------------------------
