@@ -62,6 +62,7 @@ const removeOne = (num, arr) => {
 
 const removeElements = (arr, callback) => {
   for(let i = 0; i < arr.length; i++) {
+    //how do we determine the parameters passed into the callback?
     callback(arr[i], arr);
   }
   return arr;
@@ -74,7 +75,8 @@ Write a function named removeWithForEach that produces the same output as challe
 ------------------------------------------------------------------------------------------------ */
 
 const removeWithForEach = (arr, callback) => {
-  // Solution code here...
+  arr.forEach(number => callback(number, arr));
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -154,19 +156,19 @@ Run your tests from the console: jest challenges-01.test.js
 //   });
 // });
 
-describe('Testing challenge 3', () => {
-  test('It should remove three elements from the array', () => {
-    expect(removeElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne)).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
-    expect(removeElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne).length).toStrictEqual(7);
-  });
-});
-
-// describe('Testing challenge 4', () => {
+// describe('Testing challenge 3', () => {
 //   test('It should remove three elements from the array', () => {
-//     expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne)).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
-//     expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne).length).toStrictEqual(7);
+//     expect(removeElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne)).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
+//     expect(removeElements([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne).length).toStrictEqual(7);
 //   });
 // });
+
+describe('Testing challenge 4', () => {
+  test('It should remove three elements from the array', () => {
+    expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne)).toStrictEqual([1, 2, 3, 4, 5, 6, 7]);
+    expect(removeWithForEach([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], removeOne).length).toStrictEqual(7);
+  });
+});
 
 // describe('Testing challenge 5', () => {
 //   test('It should remove three elements from the array', () => {
