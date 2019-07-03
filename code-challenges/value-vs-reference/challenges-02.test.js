@@ -25,7 +25,7 @@ appendFirstToLast(a);
 console.log(a) prints [1, 2, 3, 1]
 ------------------------------------------------------------------------------------------------ */
 
-const appendFirstToLast = (arr) => {(arr.push(arr[0]))}
+const appendFirstToLast = (arr) => {(arr.push(arr[0]))};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 3
@@ -42,9 +42,7 @@ addBirthYearProperty(octavia, 1947);
 console.log(a) prints { fullName: 'Octavia Estelle Butler', yearBorn: 1947 }
 ------------------------------------------------------------------------------------------------ */
 
-const addBirthYearProperty = (obj, year) => {
-  // Solution code here...
-};
+const addBirthYearProperty = (obj, year) => {(obj.yearBorn = year)};
 
 /* ------------------------------------------------------------------------------------------------
 CHALLENGE 4
@@ -60,7 +58,12 @@ console.log(people[1].isAuthor) prints true
 ------------------------------------------------------------------------------------------------ */
 
 const setStatusAsAuthor = (people) => {
-  // Solution code here...
+  people.forEach( (value, idx)
+
+  );
+  // expect(a[0].isAuthor).toStrictEqual(true);
+  // expect(a[1].isAuthor).toStrictEqual(true);
+  // expect(a[2].isAuthor).toStrictEqual(true);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -104,7 +107,7 @@ xdescribe('Testing challenge 1', () => {
   });
 });
 
-describe('Testing challenge 2', () => {
+xdescribe('Testing challenge 2', () => {
   test('It should append by modifying the oiginal', () => {
     const a = ['Yes', 'it', 'is'];
     appendFirstToLast(a);
@@ -122,7 +125,7 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should add a property to every object in an array', () => {
     const a = [{ fullName: 'Octavia Butler' }, { fullName: 'Ray Bradbury' }, { fullName: 'Kurt Vonnegut' }];
     setStatusAsAuthor(a);
