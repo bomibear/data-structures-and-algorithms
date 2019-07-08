@@ -77,7 +77,13 @@ const gruffaloCrumble = {
 
 const listFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  const ingredients = recipe.ingredients;
+  for (let i = 0; i < ingredients.length; i++) {
+    //indexOf(searchValue, fromIndex)
+    let sliceArg = ingredients[i].indexOf(' ', ingredients[i].indexOf(' ') + 1);
+    //slice with 1 argument will remove anything before that parameter
+    result.push(ingredients[i].slice(sliceArg).trim());
+  }
   return result;
 };
 
@@ -91,7 +97,11 @@ You may also use other string or array methods.
 
 const splitFoods = (recipe) => {
   let result = [];
-  // Solution code here...
+  const ingredients = recipe.ingredients;
+  for(let i = 0; i < ingredients.length; i++) {
+    let entry = ingredients[i].split(' ');
+    result.push(entry.slice(2, entry.length).join(' '));
+  }
   return result;
 };
 
@@ -107,7 +117,11 @@ Return a new array containing just the verbs. For example, ['Mix until evenly di
 
 const stepActions = (recipe) => {
   let result = [];
-  // Solution code here...
+  const ingredientSteps = recipe.steps;
+  for(let i = 0; i < ingredientSteps.length; i++) {
+    let brokenSteps = ingredientSteps[i].split(' ');
+    result.push(brokenSteps[0]);
+  }
   return result;
 };
 
@@ -125,7 +139,14 @@ For example:
 ------------------------------------------------------------------------------------------------ */
 
 const removeEvenValues = (arr) => {
-  // Solution code here...
+  for(let i = 0; i < arr.length; i++) {
+    if(arr[i] % 2 === 0) {
+      console.log(arr[i] + ' is even');
+      arr.splice(i, 1);
+      console.log(arr);
+    }
+  }
+  return arr;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -144,7 +165,15 @@ removeLastCharacters('Gregor', 9) returns ''
 ------------------------------------------------------------------------------------------------ */
 
 const removeLastCharacters = (str, numberOfCharacters) => {
-  // Solution code here...
+  if(numberOfCharacters < 0){
+    return str;
+  }
+  let strArr = str.split('');
+  while(numberOfCharacters > 0){
+    strArr.pop();
+    numberOfCharacters--;
+  }
+  return strArr.join('');
 };
 
 
@@ -216,7 +245,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-describe('Testing challenge 3', () => {
+xdescribe('Testing challenge 3', () => {
   test('It should return a list of foods', () => {
     expect(listFoods(gruffaloCrumble)).toStrictEqual(['Gruffalo', 'oats', 'brown sugar', 'flour', 'pure maple syrup', 'chopped nuts', 'baking soda', 'baking powder', 'cinnamon', 'melted butter', 'fresh water']);
     expect(listFoods(gruffaloCrumble).length).toStrictEqual(11);
@@ -249,7 +278,7 @@ xdescribe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should shorten the string based on the first argument', () => {
     expect(removeLastCharacters('Gregor', 2)).toStrictEqual('Greg');
     expect(removeLastCharacters('Gregor', 2).length).toStrictEqual(4);
