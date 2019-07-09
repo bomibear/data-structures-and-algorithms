@@ -99,7 +99,6 @@ const hasChildrenValues = (arr, character) => {
   properties.forEach( property => {
     if(characters[property].name === character && characters[property].children.length >= 1){
       answer = true;
-      return answer;
     }
   });
   return answer;
@@ -115,6 +114,16 @@ The input and output of this function are the same as the input and output from 
 
 const hasChildrenEntries = (arr, character) => {
   // Solution code here...
+  let answer = false;
+  let properties = Object.entries(arr);
+  properties.forEach( entry => {
+    let name = entry[1].name;
+    let numberOfChildren = entry[1].children.length;
+    if(name === character && numberOfChildren >= 1) {
+      answer = true;
+    }
+  });
+  return answer;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -191,7 +200,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
   });
@@ -201,7 +210,7 @@ xdescribe('Testing challenge 3', () => {
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenEntries(characters, 'Eddard')).toBeTruthy();
   });
