@@ -74,6 +74,7 @@ const getHouses = (arr) => {
   let houses = [];
   let properties = Object.keys(arr);
   properties.forEach(property => {
+    console.log(characters[property].house);
     houses.push(characters[property].house);
   })
   return houses;
@@ -93,6 +94,15 @@ hasChildrenValues(characters, 'Sansa') will return false
 
 const hasChildrenValues = (arr, character) => {
   // Solution code here...
+  let answer = false;
+  let properties = Object.keys(arr);
+  properties.forEach( property => {
+    if(characters[property].name === character && characters[property].children.length >= 1){
+      answer = true;
+      return answer;
+    }
+  });
+  return answer;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -181,7 +191,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-describe('Testing challenge 3', () => {
+xdescribe('Testing challenge 3', () => {
   test('It should return true for characters that have children', () => {
     expect(hasChildrenValues(characters, 'Daenarys')).toBeTruthy();
   });
