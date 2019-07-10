@@ -26,9 +26,12 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 const filterStringsWithVowels = (arr) => {
   // var PATTERN = 'bedroom',
   //   filtered = myArray.filter(function (str) { return str.indexOf(PATTERN) === -1; });
-  let pattern = 'aeiou';
-  let filtered = arr.filter(word => word.includes(pattern));
-  return filtered;
+
+  // let pattern = 'aeiou';
+  // let filtered = arr.filter(word => word.includes(pattern));
+  // return filtered;
+
+  return arr.filter(word => /[aeiou]/i.test(word));
 };
 
 
