@@ -24,13 +24,6 @@ For example, filterStringsWithVowels('gregor','hound','xyz') returns ['gregor', 
 
 
 const filterStringsWithVowels = (arr) => {
-  // var PATTERN = 'bedroom',
-  //   filtered = myArray.filter(function (str) { return str.indexOf(PATTERN) === -1; });
-
-  // let pattern = 'aeiou';
-  // let filtered = arr.filter(word => word.includes(pattern));
-  // return filtered;
-
   return arr.filter(word => /[aeiou]/i.test(word));
 };
 
@@ -43,8 +36,8 @@ Write a function named notInFirstArray that, given two arrays as input, uses fil
 For example, notInFirstArray([1,2,3], [1,2,3,4]) returns [4].
 ------------------------------------------------------------------------------------------------ */
 
-const notInFirstArray = (forbiddenValues, arr) => { 
-  
+const notInFirstArray = (forbiddenValues, arr) => {
+  return arr.filter(num => !forbiddenValues.includes(num));
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -187,7 +180,7 @@ xdescribe('Testing challenge 1', () => {
   });
 });
 
-describe('Testing challenge 2', () => {
+xdescribe('Testing challenge 2', () => {
   test('It should return an array containing only words that have vowels', () => {
     expect(filterStringsWithVowels(['gregor','hound','xyz'])).toStrictEqual(['gregor', 'hound']);
     expect(filterStringsWithVowels(['gregor','hound','xyz']).length).toStrictEqual(2);
