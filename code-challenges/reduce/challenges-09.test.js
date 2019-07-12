@@ -180,13 +180,12 @@ const isPrime = (value) => {
 };
 
 const countPrimeNumbers = (arr) => {
-  let total = arr.reduce((acc, val) => {
+  return arr.reduce((acc, val) => {
     if(isPrime(val)) {
       acc++;
     }
     return acc;
   }, 0)
-  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -229,7 +228,10 @@ const snorlaxData = {
 };
 
 const extractStat = (statName, arr) => {
-  // Solution code here...
+  return arr.reduce((acc, val) => {
+    if(val.stat.name === statName) acc = val;
+    return acc;
+  });
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -243,7 +245,16 @@ Write a function named extractChildren that, given the array of characters from 
 ------------------------------------------------------------------------------------------------ */
 
 const extractChildren = (arr) => {
-  // Solution code here...
+  let Achars = arr.filter(word => /[a]/i.test(word));
+
+  let allChildren = Achars.reduce((acc, val) => {
+    console.log('inside ');
+    if(val.children) acc.push(val.children);
+    return acc;
+  }, []);
+
+  console.log('type of allChildren ' + allChildren);
+  return allChildren;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -256,32 +267,32 @@ DO NOT CHANGE any of the below code.
 Run your tests from the console: jest challenges-09.test.js
 ------------------------------------------------------------------------------------------------ */
 
-xdescribe('Testing challenge 1', () => {
+describe('Testing challenge 1', () => {
   test('It should return the length of the array', () => {
     expect(countNumberOfElements([1, 2, 3, 4, 5])).toStrictEqual(5);
   });
 });
 
-xdescribe('Testing challenge 2', () => {
+describe('Testing challenge 2', () => {
   test('It should return an array continaing the names of the characters', () => {
     expect(returnNames(starWarsData)).toStrictEqual([ 'Luke Skywalker', 'C-3PO', 'R2-D2', 'Darth Vader', 'Leia Organa' ]);
     expect(returnNames(starWarsData).length).toStrictEqual(5);
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return the string with the characters in reverse order', () => {
     expect(reversedString('Code 301')).toStrictEqual('103 edoC');
   });
 });
 
-xdescribe('Testing challenge 4', () => {
+describe('Testing challenge 4', () => {
   test('It should return the total number of children', () => {
     expect(countNumberOfChildren(characters)).toStrictEqual(14);
   });
 });
 
-xdescribe('Testing challenge 5', () => {
+describe('Testing challenge 5', () => {
   test('It should return the average of the numbers in the array', () => {
     expect(calculateAverage([18, 290, 37, 4, 55, 16, 7, 85 ])).toStrictEqual(64);
   });
@@ -293,7 +304,7 @@ describe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return any stats that match the input', () => {
     expect(extractStat('speed', snorlaxData.stats)).toStrictEqual({ stat: { url: 'https://pokeapi.co/api/v2/stat/6/', name: 'speed' }, effort: 5, baseStat: 30 });
   });
