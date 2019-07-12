@@ -142,11 +142,10 @@ const characters = [
 ];
 
 const countNumberOfChildren = (arr) => {
-  let total = arr.reduce((acc, val) => {
+  return arr.reduce((acc, val) => {
     if(val.children) acc.push(val.children.length);
     return acc;
   }, []).reduce((acc, val) => acc + val);
-  return total;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -245,15 +244,15 @@ Write a function named extractChildren that, given the array of characters from 
 ------------------------------------------------------------------------------------------------ */
 
 const extractChildren = (arr) => {
-  let Achars = arr.filter(word => /[a]/i.test(word));
+  let Achars = arr.filter(word => word.name.match(/[a]/g));
 
   let allChildren = Achars.reduce((acc, val) => {
-    console.log('inside ');
-    if(val.children) acc.push(val.children);
+    if(val.children){
+      val.children.forEach(children => acc.push(children));
+    }
     return acc;
   }, []);
 
-  console.log('type of allChildren ' + allChildren);
   return allChildren;
 };
 
@@ -310,7 +309,7 @@ describe('Testing challenge 7', () => {
   });
 });
 
-xdescribe('Testing challenge 8', () => {
+describe('Testing challenge 8', () => {
   test('It should return an array containing the names of the children', () => {
     expect(extractChildren(characters)).toStrictEqual([ 'Robb', 'Sansa', 'Arya', 'Bran', 'Rickon', 'Drogon', 'Rhaegal', 'Viserion', 'Margaery', 'Loras' ]);
     expect(extractChildren(characters).length).toStrictEqual(10);
