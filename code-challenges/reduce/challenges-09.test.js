@@ -248,12 +248,10 @@ const extractChildren = (arr) => {
   let Achars = arr.filter(word => /[a]/i.test(word));
 
   let allChildren = Achars.reduce((acc, val) => {
-    console.log('inside ');
     if(val.children) acc.push(val.children);
     return acc;
   }, []);
 
-  console.log('type of allChildren ' + allChildren);
   return allChildren;
 };
 
