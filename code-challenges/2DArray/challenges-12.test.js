@@ -75,7 +75,7 @@ const errands = [
 ];
 
 const howManyTreats = (arr) => {
-  // Solution code here...
+  return arr[2].items[1].quantity;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -97,7 +97,7 @@ The top row of the board is considered row zero and row numbers increase as they
 ------------------------------------------------------------------------------------------------ */
 
 const battleship = (board, row, col) => {
-  //  Solution code here...
+  return board[row][col] === '#' ? 'hit' : 'miss';
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -109,7 +109,17 @@ For example, the following input returns a product of 720: [[1,2], [3,4], [5,6]]
 ------------------------------------------------------------------------------------------------ */
 
 const calculateProduct = (numbers) => {
-  // Solution code here...
+  let innerProd = [];
+  let outterProd = 1;
+  for(let i = 0; i < numbers.length; i++) {
+    let product = 1;
+    for(let j = 0; j < numbers[i].length; j++) {
+      product *= numbers[i][j];
+    }
+    innerProd.push(product);
+    outterProd *= innerProd[i];
+  }
+  return outterProd;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -129,7 +139,15 @@ const weeklyTemperatures = [
 ];
 
 const averageDailyTemperature = (weather) => {
-  // Solution code here...
+  let monthlyTotal = 0;
+  for(let i = 0; i < weather.length; i++){
+    let weeklyTotal = 0;
+    for(let j = 0; j < weather[i].length; j++) {
+      weeklyTotal += weather[i][j];
+    }
+    monthlyTotal += weeklyTotal;
+  }
+  return monthlyTotal/(7*weather.length);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -150,7 +168,6 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
-  // Solution code here...
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -209,7 +226,7 @@ xdescribe('Testing challenge 2', () => {
 });
 
 
-describe('Testing challenge 3', () => {
+xdescribe('Testing challenge 3', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
@@ -253,7 +270,7 @@ xdescribe('Testing challenge 6', () => {
   });
 });
 
-xdescribe('Testing challenge 7', () => {
+describe('Testing challenge 7', () => {
   test('It should return the lowest weekly average temperature within the data set', () => {
     expect(lowestWeeklyAverage(weeklyTemperatures)).toStrictEqual(57);
     expect(lowestWeeklyAverage(lowestWeeklyTemperatureData)).toStrictEqual(46);
