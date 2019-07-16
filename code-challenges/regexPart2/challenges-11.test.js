@@ -54,7 +54,7 @@ Return either true or false.
 ------------------------------------------------------------------------------------------------ */
 
 const validatePhoneNumber = (phoneNumber) => {
-  // Solution code here...
+  return /^(([(]\d{3}[)]\s?)|(\d{3}\s?[-]?))\d{3}([-]|\s)?\d{4}$/.test(phoneNumber);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ DO NOT CHANGE any of the below code.
 Run your tests from the console: jest solutions-11.test.js
 ------------------------------------------------------------------------------------------------ */
 
-xdescribe('Testing challenge 1', () => {
+describe('Testing challenge 1', () => {
   test('It should validate a PIN of exactly four digits', () => {
     expect(validatePin(1234)).toBeTruthy();
     expect(validatePin(123)).toBeFalsy();
@@ -123,7 +123,7 @@ describe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should match the acceptable phone number formats', () => {
     expect(validatePhoneNumber('(555) 555-5555')).toBeTruthy();
     expect(validatePhoneNumber('555 555-5555')).toBeTruthy();
