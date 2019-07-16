@@ -67,7 +67,11 @@ findTagNames(['<div><h1>Hello, world!</h1></div>', '<p>Welcome to my site</p>'])
 ------------------------------------------------------------------------------------------------ */
 
 const findTagNames = elements => {
-  // Solution code here...
+  const pattern = /<\/\w+>/g;
+  elements.map( el => {
+    const matched = el.match(pattern)[0];
+    return matched.substr(1, matched.length - 2)
+  })
 };
 
 /* ------------------------------------------------------------------------------------------------
