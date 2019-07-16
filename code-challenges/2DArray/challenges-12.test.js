@@ -168,6 +168,15 @@ let lowestWeeklyTemperatureData = [
 ];
 
 const lowestWeeklyAverage = (weather) => {
+  let weeklyTotalArr = [];
+  for(let i = 0; i < weather.length; i++) {
+    let weeklyTotal = 0;
+    for(let j = 0; j < weather[i].length; j++) {
+      weeklyTotal += weather[i][j];
+    }
+    weeklyTotalArr.push(weeklyTotal/7);
+  }
+  return Math.min.apply(Math, weeklyTotalArr);
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -183,7 +192,7 @@ For example, excel('1,1,1\n4,4,4\n9,9,9') returns [3, 12, 27].
 ------------------------------------------------------------------------------------------------ */
 
 const excel = (str) => {
-  // Solution code here...
+  
 };
 
 /* ------------------------------------------------------------------------------------------------
