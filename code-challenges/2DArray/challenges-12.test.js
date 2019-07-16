@@ -24,7 +24,6 @@ const cookieStores = [firstPike, seaTac, seattleCenter, capHill, alkiBeach];
 
 const grandTotal = (stores) => {
   let totalArr = [];
-  console.log('hello');
   for(let i = 0; i < hoursOpen.length; i++){
     let total = 0;
     for(let j = 0; j < stores.length; j++) {
@@ -46,7 +45,15 @@ Write a function named salesData that uses forEach to iterate over the hourlySal
 ------------------------------------------------------------------------------------------------ */
 
 const salesData = (hours, data) => {
-  
+  let formattedData = [];
+  hours.forEach( (hour, idx) => {
+    let obj = {
+      sales: `${data[idx]} cookies`,
+      time: hour
+    }
+    formattedData.push(obj);
+  })
+  return formattedData;
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -174,7 +181,7 @@ Run your tests from the console: jest challenge-12.test.js
 ------------------------------------------------------------------------------------------------ */
 
 
-describe('Testing challenge 1', () => {
+xdescribe('Testing challenge 1', () => {
   test('It should add the hourly totals array', () => {
     expect(grandTotal(cookieStores)).toStrictEqual([88, 153, 252, 286, 139, 161, 145, 232, 276, 207, 161, 169]);
   });
@@ -202,7 +209,7 @@ xdescribe('Testing challenge 2', () => {
 });
 
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should return the number 24', () => {
     expect(howManyTreats(errands)).toStrictEqual(24);
   });
