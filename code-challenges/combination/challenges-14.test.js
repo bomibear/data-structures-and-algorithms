@@ -86,7 +86,13 @@ let starWarsData = [{
 }];
 
 let biggerThanLuke = (arr) => {
-  // Solution code here...
+  function bigger(person){
+    if(person.mass > 77){
+      return true;
+    }
+  }
+  let newArr = arr.filter(bigger);
+  return newArr.map(el => el.name).join(' - ');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -104,7 +110,11 @@ This data could be sorted by name or price.
 ------------------------------------------------------------------------------------------------ */
 
 const sortBy = (property, arr) => {
-  // Solution code here...
+
+  return arr.sort(function(a, b) {
+    return a.property - b.property;
+  })
+
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -120,7 +130,7 @@ https://secure.com returns true because the URL is secure
 https:/missingslash.org returns false because the URL is malformed
 ------------------------------------------------------------------------------------------------ */
 const isSecure = (url) => {
-// Solution code here...
+  return url.includes('https://');
 };
 
 /* ------------------------------------------------------------------------------------------------
@@ -157,7 +167,7 @@ Run your tests from the console: jest challenge-14.test.js
 
 ------------------------------------------------------------------------------------------------ */
 
-describe('Testing challenge 1', () => {
+xdescribe('Testing challenge 1', () => {
   test('It should convert each word to title case', () => {
     const words = ['apple', 'banana', 'MacGyver'];
     expect(toTitleCase(words)).toStrictEqual(['Apple','Banana','MacGyver']);
@@ -173,7 +183,7 @@ xdescribe('Testing challenge 2', () => {
   });
 });
 
-xdescribe('Testing challenge 3', () => {
+describe('Testing challenge 3', () => {
   test('It should sort items by a price', () => {
 
     expect(sortBy('price', [
